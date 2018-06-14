@@ -1,9 +1,7 @@
 import math, numpy, random, time, getpass
 import strawberryfields as sf
 from strawberryfields.ops import *
-from strawberryfields.ops import Gate
-from strawberryfields.utils import scale
-from numpy import pi, sqrt
+
 
 
 
