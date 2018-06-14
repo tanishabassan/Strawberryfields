@@ -2,9 +2,6 @@ import math, numpy, random, time, getpass
 import strawberryfields as sf
 from strawberryfields.ops import *
 
-
-
-
 print("\n\n\n\n===== Welcome to Quantum Battleships! =====\n\n")
 print("\n\n")
 print("Press Enter to continue!")
