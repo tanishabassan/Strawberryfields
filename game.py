@@ -1,6 +1,11 @@
 import math, numpy, random, time, getpass
 import strawberryfields as sf
 from strawberryfields.ops import *
+from strawberryfields.ops import Gate
+from strawberryfields.utils import scale
+from numpy import pi, sqrt
+
+
 
 print("\n\n\n\n===== Welcome to Quantum Battleships! =====\n\n")
 print("\n\n")
@@ -144,26 +149,26 @@ with eng:
 # apply the bombs
 
 
-if (battle[bomb1]==1):
-    Measure | q[bomb1]
-else:
-    Rgate(0) | q[bomb1]
-if (battle[bomb2]==1):
-    Measure | q[bomb2]
-else:
-    Rgate(0) | q[bomb2]
+    if (battle[bomb1]==1):
+        Measure | q[1]
+    else:
+        Rgate(0) | q[1]
+    if (battle[bomb2]==1):
+        Measure | q[1]
+    else:
+        Rgate(0) | q[1]
 
 # measure all in X basis
-Dgate (2.0 + 1j) | q[0]
-Measure | q[0]
-Dgate (2.0 + 1j) | q[1]
-Measure | q[1]
-Dgate (2.0 + 1j) | q[2]
-Measure | q[2]
-Dgate (2.0 + 1j)| q[3]
-Measure | q[3]
-Dgate (2.0 + 1j)| q[4]
-Measure | q[4]
+    Dgate (2.0 + 1j) | q[0]
+    Measure | q[0]
+    Dgate (2.0 + 1j) | q[1]
+    Measure | q[1]
+    Dgate (2.0 + 1j) | q[2]
+    Measure | q[2]
+    Dgate (2.0 + 1j)| q[3]
+    Measure | q[3]
+    Dgate (2.0 + 1j)| q[4]
+    Measure | q[4]
 
 state = eng.run('fock', cutoff_dim=5)  # run all gates (and execute measurements)
 
@@ -173,7 +178,9 @@ print("Between 1% and 100% intact means it's still afloat.")
 print("Between -1% and -100% intact means the ship has sunk")
 print("0% intact could go either way.")
 
-results = eng.backend.get_probabilities(qumodes) # get probabilities
+
+result = state.fock_prob() ### need help with finding the probabilities of fock state 
+
 # fill in mising values
 for b1 in range(2):
 	for b2 in range(2):
