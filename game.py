@@ -178,10 +178,13 @@ print("Between 1% and 100% intact means it's still afloat.")
 print("Between -1% and -100% intact means the ship has sunk")
 print("0% intact could go either way.")
 
+result1 = state.fock_prob([0,1])
+result2 = state.fock_prob([1,1])
+result3 = state.fock_prob([1,2]) 
+result4 = state.fock_prob([1,3])
+result5 = state.fock_prob([1,4])
+result6 = state.fock_prob([1,5])
 
-result = state.fock_prob() ### need help with finding the probabilities of fock state 
-
-# fill in mising values
 for b1 in range(2):
 	for b2 in range(2):
 		for b3 in range(2):
@@ -198,17 +201,17 @@ for b1 in range(2):
 		for b3 in range(2):
 
 			if (ship == "a"): # a means 0 and 1
-				damage = damage + results[ "01" + str(b1) + str(b2) + str(b3) ] + results[ "10" + str(b1) + str(b2) + str(b3) ]
+				damage = damage + result1[ "01" + str(b1) + str(b2) + str(b3) ] + result1[ "10" + str(b1) + str(b2) + str(b3) ]
 			if (ship == "b"): # b means 0 and 2
-				damage = damage + results[ "0" + str(b1) + "1" + str(b2) + str(b3) ] + results[ "1" + str(b1) + "0" + str(b2) + str(b3) ]
+				damage = damage + result2[ "0" + str(b1) + "1" + str(b2) + str(b3) ] + result2[ "1" + str(b1) + "0" + str(b2) + str(b3) ]
 			if (ship == "c"): # c means 1 and 2
-				damage = damage + results[ str(b1) + "01" + str(b2) + str(b3) ] + results[ str(b1) + "10" + str(b2) + str(b3) ]
+				damage = damage + result3[ str(b1) + "01" + str(b2) + str(b3) ] + result3[ str(b1) + "10" + str(b2) + str(b3) ]
 			if (ship == "d"): # d means 2 and 4
-				damage = damage + results[ str(b1) + str(b2) + "0" + str(b3) + "1" ] + results[ str(b1) + str(b2) + "1" + str(b3) + "0" ]
+				damage = damage + result4[ str(b1) + str(b2) + "0" + str(b3) + "1" ] + result4[ str(b1) + str(b2) + "1" + str(b3) + "0" ]
 			if (ship == "e"): # e means 2 and 3
-				damage = damage + results[ str(b1) + str(b2) + "01" + str(b3) ] + results[ str(b1) + str(b2) + "10" + str(b3) ]
+				damage = damage + result5[ str(b1) + str(b2) + "01" + str(b3) ] + result5[ str(b1) + str(b2) + "10" + str(b3) ]
 			if (ship == "f"): # f means 3 and 4
-				damage = damage + results[ str(b1) + str(b2) + str(b3) + "01" ] + results[ str(b1) + str(b2) + str(b3) +"10" ]
+				damage = damage + result6[ str(b1) + str(b2) + str(b3) + "01" ] + result6[ str(b1) + str(b2) + str(b3) +"10" ]
 
 
 time.sleep(1)
