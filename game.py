@@ -105,9 +105,9 @@ while (chosen==0):
 print("\nWe'll now run this scenario on Strawberryfields and see what happens.")
 input()
 
-eng, q = sf.Engine(5)
+eng, q = sf.Engine(6)
 
-battle = [0]*5
+battle = [0]*6
 with eng:
     if (ship == "a"): # a means 0 and 1
         Dgate(2.0 + 1j) | q[0]
@@ -170,7 +170,7 @@ with eng:
     Dgate (2.0 + 1j)| q[4]
     Measure | q[4]
 
-state = eng.run('fock', cutoff_dim=5)  # run all gates (and execute measurements)
+state = eng.run('fock', cutoff_dim=6)  # run all gates (and execute measurements)
 
 time.sleep(1)
 print("\nNow let's see how intact the ship is.")
@@ -178,21 +178,21 @@ print("Between 1% and 100% intact means it's still afloat.")
 print("Between -1% and -100% intact means the ship has sunk")
 print("0% intact could go either way.")
 
-result1 = state.fock_prob([0,1])
-result2 = state.fock_prob([1,1])
-result3 = state.fock_prob([1,2]) 
-result4 = state.fock_prob([1,3])
-result5 = state.fock_prob([1,4])
-result6 = state.fock_prob([1,5])
 
+result1 = state.fock_prob([0,1,2,3,4,5])
+result2 = state.fock_prob([1,2,3,4,5,0])
+result3 = state.fock_prob([2,3,4,5,0,1]) ### need help with finding the probabilities of fock state
+result4 = state.fock_prob([3,4,5,0,1,2])
+result5 = state.fock_prob([4,5,0,1,2,3])
+result6 = state.fock_prob([5,0,1,2,3,4])
+# fill in mising values
 for b1 in range(2):
 	for b2 in range(2):
 		for b3 in range(2):
 			for b4 in range(2):
 				for b5 in range(2):
 					bitString = str(b1) + str(b2) + str(b3) + str(b4) + str(b5)
-					if bitString not in results:
-						results[bitString] = 0
+				
 
 # determine damage for ship
 damage = 0
