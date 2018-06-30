@@ -180,45 +180,44 @@ print("0% intact could go either way.")
 
 
 result1 = state.fock_prob([0,1,2,3,4,5])
+
 result2 = state.fock_prob([1,2,3,4,5,0])
-result3 = state.fock_prob([2,3,4,5,0,1]) ### need help with finding the probabilities of fock state
+
+result3 = state.fock_prob([2,3,4,5,0,1])
+
 result4 = state.fock_prob([3,4,5,0,1,2])
+
 result5 = state.fock_prob([4,5,0,1,2,3])
+
 result6 = state.fock_prob([5,0,1,2,3,4])
-# fill in mising values
-for b1 in range(2):
-	for b2 in range(2):
-		for b3 in range(2):
-			for b4 in range(2):
-				for b5 in range(2):
-					bitString = str(b1) + str(b2) + str(b3) + str(b4) + str(b5)
-				
+
+
 
 # determine damage for ship
 damage = 0
-for b1 in range(2):
-	for b2 in range(2):
-		for b3 in range(2):
 
-			if (ship == "a"): # a means 0 and 1
-				damage = damage + result1[ "01" + str(b1) + str(b2) + str(b3) ] + result1[ "10" + str(b1) + str(b2) + str(b3) ]
-			if (ship == "b"): # b means 0 and 2
-				damage = damage + result2[ "0" + str(b1) + "1" + str(b2) + str(b3) ] + result2[ "1" + str(b1) + "0" + str(b2) + str(b3) ]
-			if (ship == "c"): # c means 1 and 2
-				damage = damage + result3[ str(b1) + "01" + str(b2) + str(b3) ] + result3[ str(b1) + "10" + str(b2) + str(b3) ]
-			if (ship == "d"): # d means 2 and 4
-				damage = damage + result4[ str(b1) + str(b2) + "0" + str(b3) + "1" ] + result4[ str(b1) + str(b2) + "1" + str(b3) + "0" ]
-			if (ship == "e"): # e means 2 and 3
-				damage = damage + result5[ str(b1) + str(b2) + "01" + str(b3) ] + result5[ str(b1) + str(b2) + "10" + str(b3) ]
-			if (ship == "f"): # f means 3 and 4
-				damage = damage + result6[ str(b1) + str(b2) + str(b3) + "01" ] + result6[ str(b1) + str(b2) + str(b3) +"10" ]
+if (ship == "a"): 
+	damage = damage + 0 + 1
+if (ship == "b"): 
+	damage = damage + 0 + 2
+if (ship == "c"): 
+	damage = damage + 1 + 2
+if (ship == "d"): 
+	damage = damage + 2 + 4
+if (ship == "e"): 
+	damage = damage + 2 + 3
+if (ship == "f"): 
+	damage = damage + 3 + 4
 
 
 time.sleep(1)
 print("\nThe ship is " + str(int( 100*(1-2*damage) )) + "% intact")
+
 print("(which means " + str(int( -100*(1-2*damage) )) + "% broken).\n")
+
 if (damage>0.5):
 	print("It has been destroyed!\nPlayer 2 wins!\n\n")
+
 else:
     print("It's still afloat!\nPlayer 1 wins!\n\n")
 
